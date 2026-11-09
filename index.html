@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Divia · Reels de producto con IA</title>
+<meta name="description" content="Reels verticales hechos con IA para marcas, agencias creativas y estudios boutique.">
+<meta property="og:title" content="Divia · Reels de producto con IA">
+<meta property="og:description" content="Reels verticales hechos con IA para marcas, agencias creativas y estudios boutique.">
+<meta property="og:image" content="assets/reels/pompom-poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="logo" href="#inicio">Divia</a>
+  <nav class="navlinks" aria-label="Principal">
+    <a href="#reels">Reels</a>
+    <a href="#comparar">Del producto al reel</a>
+    <a href="#paquetes">Paquetes</a>
+  </nav>
+  <a class="btn btn-accent btn-sm" href="#contacto">Pide un reel de prueba</a>
+</header>
+
+<main>
+  <section id="inicio" class="wrap hero">
+    <div class="hero-copy">
+      <h1>Tu producto, en movimiento.</h1>
+      <p class="lead">Reels verticales hechos con IA para marcas, agencias creativas y estudios boutique. Sin rodaje, con dirección de arte.</p>
+      <div class="actions">
+        <a class="btn btn-light" href="#reels">Ver los reels</a>
+        <a class="btn btn-outline" href="#comparar">Cómo nace un reel</a>
+      </div>
+    </div>
+    <div class="wall" aria-hidden="true">
+      <div class="col c1" data-col="1"></div>
+      <div class="col c2" data-col="2"></div>
+      <div class="col c3" data-col="3"></div>
+    </div>
+  </section>
+
+  <section id="reels" class="wrap section">
+    <div class="section-head">
+      <h2>Reels</h2>
+      <p>Toca un reel para verlo con sonido, junto a lo que buscaba la marca.</p>
+    </div>
+    <div class="tabs" role="group" aria-label="Filtrar por categoría"></div>
+
+    <div class="viewer" id="viewer" hidden>
+      <div class="viewer-grid">
+        <div class="stage">
+          <div class="bars" aria-hidden="true"></div>
+          <video id="viewer-video" playsinline muted loop preload="metadata"></video>
+          <div class="stage-soon" hidden>
+            <span class="soon-brand"></span>
+            <span>Reel en producción</span>
+          </div>
+          <button class="sound" type="button" aria-pressed="false">Activar sonido</button>
+        </div>
+        <div class="case">
+          <span class="case-cat"></span>
+          <h3 class="case-goal"></h3>
+          <dl class="case-facts"></dl>
+          <div class="actions">
+            <button class="btn btn-outline" type="button" data-go="-1">Anterior</button>
+            <button class="btn btn-accent" type="button" data-go="1">Siguiente</button>
+            <button class="btn btn-ghost" type="button" data-close>Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="comparar" class="wrap section">
+    <div class="compare-layout">
+      <div>
+        <h2>Del producto al reel</h2>
+        <p class="lead">Parto del producto tal como es y lo llevo a una escena que cuenta algo. Desliza para comparar.</p>
+        <label class="range-label" for="rango">Comparar producto y escena</label>
+        <input id="rango" type="range" min="0" max="100" value="50">
+      </div>
+      <div class="compare" style="--pos:50%">
+        <img class="after" src="assets/reels/pompom-escena.jpg" alt="Escena del reel de PomPom: aceite Black junto a una piscina de noche" loading="lazy">
+        <img class="before" src="assets/reels/pompom-producto.jpg" alt="Los tres aceites bronceadores de PomPom sobre fondo liso" loading="lazy">
+        <span class="tag tag-l">Producto</span>
+        <span class="tag tag-r">En el reel</span>
+        <span class="handle" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="two">
+      <div class="audience">
+        <h3>Para agencias y estudios boutique</h3>
+        <p>Trabajo en marca blanca: tu cliente ve el trabajo de tu agencia. Sumas reels a tus propuestas sin contratar rodaje.</p>
+        <ul>
+          <li>Volumen mensual con plazos fijos</li>
+          <li>Variantes por formato y por mercado</li>
+          <li>Archivos y prompts entregados ordenados</li>
+        </ul>
+      </div>
+      <div class="audience">
+        <h3>Para marcas y negocios</h3>
+        <p>Un reel listo para Instagram y TikTok a partir de las fotos que ya tienes de tu producto.</p>
+        <ul>
+          <li>Sin rodaje ni estudio</li>
+          <li>Planes mensuales desde $129.990</li>
+          <li>Listo en menos de una semana</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="paquetes" class="wrap section">
+    <h2>Paquetes</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Reel suelto</h3>
+        <div class="price">$49.990</div>
+        <p class="per">Un reel de hasta 20 s</p>
+        <ul>
+          <li>Guion, voz IA, subtítulos y música</li>
+          <li>1 ronda de cambios</li>
+        </ul>
+        <a class="btn btn-outline" href="mailto:tomasurizarbusiness@gmail.com?subject=Quiero%20un%20reel%20suelto">Pedir un reel</a>
+      </div>
+      <div class="plan">
+        <h3>Inicio</h3>
+        <div class="price">$129.990<small>/mes</small></div>
+        <p class="per">4 reels de hasta 20 s, uno por semana</p>
+        <ul>
+          <li>Guion aprobado antes de producir</li>
+          <li>Voz IA, subtítulos y música</li>
+          <li>1 ronda de cambios por reel</li>
+        </ul>
+        <a class="btn btn-outline" href="mailto:tomasurizarbusiness@gmail.com?subject=Plan%20Inicio">Elegir Inicio</a>
+      </div>
+      <div class="plan plan-featured">
+        <h3>Crecimiento</h3>
+        <div class="price">$219.990<small>/mes</small></div>
+        <p class="per">8 reels de hasta 30 s</p>
+        <ul>
+          <li>Todo lo de Inicio</li>
+          <li>Versión para historias</li>
+          <li>Calendario del mes</li>
+          <li>2 rondas de cambios por reel</li>
+        </ul>
+        <a class="btn btn-dark" href="mailto:tomasurizarbusiness@gmail.com?subject=Plan%20Crecimiento">Elegir Crecimiento</a>
+      </div>
+      <div class="plan">
+        <h3>Pro</h3>
+        <div class="price">$329.990<small>/mes</small></div>
+        <p class="per">12 reels de hasta 30 s, más 1 premium</p>
+        <ul>
+          <li>Todo lo de Crecimiento</li>
+          <li>Reel premium con persona a cámara o tomas reales del local</li>
+        </ul>
+        <a class="btn btn-outline" href="mailto:tomasurizarbusiness@gmail.com?subject=Plan%20Pro">Elegir Pro</a>
+      </div>
+    </div>
+    <p class="plans-note">Precios en pesos chilenos, sin impuestos. Ronda de cambios extra: $10.000 por reel. ¿Eres agencia o estudio? <a href="mailto:tomasurizarbusiness@gmail.com?subject=Reels%20en%20marca%20blanca">Escríbeme</a> y armamos un volumen mensual en marca blanca.</p>
+  </section>
+
+  <section id="contacto" class="wrap section contact">
+    <h2>Mándame una foto de tu producto. Te devuelvo un reel.</h2>
+    <div class="actions center">
+      <a class="btn btn-accent btn-lg" href="mailto:tomasurizarbusiness@gmail.com?subject=Quiero%20un%20reel">Escríbeme</a>
+    </div>
+    <p class="mail"><a href="mailto:tomasurizarbusiness@gmail.com">tomasurizarbusiness@gmail.com</a></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <span>Divia, Santiago de Chile</span>
+  <span>Instagram [TU USUARIO]</span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
