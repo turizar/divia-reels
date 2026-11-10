@@ -245,7 +245,7 @@ form.addEventListener('submit', async (e) => {
     if (!res.ok) throw new Error(res.status);
     form.reset();
     status.classList.add('ok');
-    status.textContent = 'Listo, recibí tu mensaje. Te respondo a la brevedad.';
+    status.textContent = 'Listo, recibí tu mensaje. Te escribo a la brevedad.';
   } catch (err) {
     status.replaceChildren(
       document.createTextNode('No se pudo enviar. Escríbeme por '),
