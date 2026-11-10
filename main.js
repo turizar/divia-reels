@@ -105,7 +105,7 @@ function renderGrid() {
     }
     const preview = el('video', { src: r.video, poster: r.poster, playsinline: '', muted: '', loop: '', preload: 'none' });
     preview.muted = true;
-    const t = el('button', { class: 'tile', type: 'button', style: `--i:${i}`, 'aria-label': `Ver el reel de ${r.brand} con sonido` }, [
+    const t = el('button', { class: 'tile', type: 'button', style: `--i:${i}`, 'aria-label': `Ver el video de ${r.brand} con sonido` }, [
       preview,
       el('span', { class: 'dur', text: r.facts[0][1] }),
       el('span', { class: 'play', 'aria-hidden': 'true' }),
