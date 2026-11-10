@@ -3,7 +3,7 @@
 // "video" y "poster" a tus archivos en assets/reels/. Los reels con "pronto: true"
 // se muestran como "En producción"; bórralos cuando tengas los reels reales.
 // Para agregar una imagen: deja el archivo en assets/imagenes/ y suma una línea en IMAGENES
-// (más abajo). Se muestran en formato de feed (4:5) y completas al ampliarlas.
+// (más abajo). Se muestran completas, en vertical (9:16), tres por línea.
 
 const REELS = [
   {
@@ -200,46 +200,11 @@ range.addEventListener('input', () => compare.style.setProperty('--pos', range.v
 
 /* Imágenes */
 const IMAGENES = [
-  { src: 'assets/imagenes/pompom-imagen-1.jpg', marca: 'PomPom', uso: 'Historia de verano', alt: 'Botella de aceite PomPom cayendo al agua turquesa de una piscina' },
-  { src: 'assets/imagenes/pompom-imagen-2.jpg', marca: 'PomPom', uso: 'Campaña de playa', alt: 'Aceite PomPom Dorado gigante sobre una playa con bañistas' },
-  { src: 'assets/imagenes/pompom-imagen-3.jpg', marca: 'PomPom', uso: 'Post de feed', alt: 'Aceite PomPom Chocolate sobre una toalla en la arena, con lentes de sol' },
-  { src: 'assets/imagenes/pompom-imagen-4.jpg', marca: 'PomPom', uso: 'Campaña nocturna', alt: 'Aceite PomPom Black al borde de una piscina iluminada de noche' },
-  { src: 'assets/imagenes/pompom-imagen-5.jpg', marca: 'PomPom', uso: 'Detalle de textura', alt: 'Hombro bronceado con gotas de aceite y el mar de fondo' },
-  { src: 'assets/imagenes/pompom-imagen-6.jpg', marca: 'PomPom', uso: 'Tienda online', alt: 'Los tres aceites PomPom, Dorado, Chocolate y Black, sobre fondo rosado' }
+  { src: 'assets/imagenes/pompom-imagen-2.jpg', alt: 'Aceite PomPom Dorado gigante sobre una playa con bañistas' },
+  { src: 'assets/imagenes/pompom-imagen-3.jpg', alt: 'Aceite PomPom Chocolate sobre una toalla en la arena, con lentes de sol' },
+  { src: 'assets/imagenes/pompom-imagen-4.jpg', alt: 'Aceite PomPom Black al borde de una piscina iluminada de noche' }
 ];
 
-const gallery = document.getElementById('gallery');
-const lightbox = document.getElementById('lightbox');
-const lbImg = lightbox.querySelector('img');
-const lbCaption = lightbox.querySelector('.lightbox-caption');
-let lbIndex = 0;
-
-function showImage(i) {
-  lbIndex = (i + IMAGENES.length) % IMAGENES.length;
-  const im = IMAGENES[lbIndex];
-  lbImg.src = im.src;
-  lbImg.alt = im.alt;
-  lbCaption.textContent = `${im.marca}, ${im.uso.toLowerCase()} (${lbIndex + 1} de ${IMAGENES.length})`;
-}
-
-gallery.replaceChildren(...IMAGENES.map((im, i) => {
-  const btn = el('button', { type: 'button', 'aria-label': `Ampliar imagen: ${im.alt}` }, [
-    el('img', { src: im.src, alt: '', loading: 'lazy' })
-  ]);
-  btn.addEventListener('click', () => {
-    showImage(i);
-    if (typeof lightbox.showModal === 'function') lightbox.showModal();
-    else lightbox.setAttribute('open', '');
-  });
-  const cap = el('figcaption');
-  cap.append(el('b', { text: im.marca }), document.createTextNode(`, ${im.uso.toLowerCase()}`));
-  return el('figure', { class: 'shot' }, [btn, cap]);
-}));
-
-lightbox.querySelectorAll('[data-step]').forEach((b) => b.addEventListener('click', () => showImage(lbIndex + Number(b.dataset.step))));
-lightbox.querySelector('[data-dismiss]').addEventListener('click', () => lightbox.close());
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
-lightbox.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight') showImage(lbIndex + 1);
-  if (e.key === 'ArrowLeft') showImage(lbIndex - 1);
-});
+document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) =>
+  el('figure', { class: 'shot' }, [el('img', { src: im.src, alt: im.alt, loading: 'lazy' })])
+));
