@@ -41,7 +41,7 @@ const REELS = [
 const WALL = {
   1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/pompom-cuadro-4.jpg', 'img:assets/reels/sabvia-cuadro-4.jpg'],
   2: ['img:assets/reels/sabvia-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/sabvia-cuadro-3.jpg', 'img:assets/reels/pompom-cuadro-5.jpg'],
-  3: ['clip:assets/escenas/sabvia-flotando.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/pompom-cuadro-6.jpg']
+  3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/pompom-cuadro-6.jpg']
 };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
