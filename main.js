@@ -96,16 +96,16 @@ function renderTabs() {
 }
 
 function renderGrid() {
-  grid.replaceChildren(...visible().map((r) => {
+  grid.replaceChildren(...visible().map((r, i) => {
     if (r.pronto) {
-      return el('div', { class: 'tile soon', style: `background:${r.color};color:${r.ink}` }, [
+      return el('div', { class: 'tile soon', style: `background:${r.color};color:${r.ink};--i:${i}` }, [
         el('span', { class: 'dur', text: 'En producción' }),
         el('div', { class: 'meta' }, [el('b', { text: r.brand }), el('span', { text: r.product })])
       ]);
     }
     const preview = el('video', { src: r.video, poster: r.poster, playsinline: '', muted: '', loop: '', preload: 'none' });
     preview.muted = true;
-    const t = el('button', { class: 'tile', type: 'button', 'aria-label': `Ver el reel de ${r.brand} con sonido` }, [
+    const t = el('button', { class: 'tile', type: 'button', style: `--i:${i}`, 'aria-label': `Ver el reel de ${r.brand} con sonido` }, [
       preview,
       el('span', { class: 'dur', text: r.facts[0][1] }),
       el('span', { class: 'play', 'aria-hidden': 'true' }),
@@ -195,3 +195,64 @@ const IMAGENES = [
 document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) =>
   el('figure', { class: 'shot' }, [el('img', { src: im.src, alt: im.alt, loading: 'lazy' })])
 ));
+
+/* Movimiento: entrada del inicio y grilla en cascada */
+const root = document.documentElement;
+if (root.classList.contains('motion')) {
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-ready')));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  io.observe(grid);
+} else {
+  grid.classList.add('in');
+}
+
+/* Cursor "Ver" sobre los reels (solo con mouse) */
+const cursor = document.querySelector('.cursor');
+if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  grid.addEventListener('mousemove', (e) => {
+    const onTile = e.target.closest('.tile:not(.soon)');
+    cursor.classList.toggle('on', Boolean(onTile));
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  grid.addEventListener('mouseleave', () => cursor.classList.remove('on'));
+  grid.addEventListener('click', () => cursor.classList.remove('on'));
+}
+
+/* Contacto: los botones de cotizar eligen el motivo en el formulario */
+const form = document.getElementById('contact-form');
+const interes = document.getElementById('f-interes');
+document.querySelectorAll('[data-interes]').forEach((a) => a.addEventListener('click', () => {
+  interes.value = a.dataset.interes;
+}));
+
+/* Envío del formulario sin salir de la página (FormSubmit) */
+const status = form.querySelector('.form-status');
+const WHATSAPP = 'https://wa.me/56978797927';
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (form.querySelector('.honey').value) return;
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  status.className = 'form-status';
+  status.textContent = 'Enviando...';
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/tomasurizarbusiness@gmail.com', {
+      method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form)
+    });
+    if (!res.ok) throw new Error(res.status);
+    form.reset();
+    status.classList.add('ok');
+    status.textContent = 'Listo, recibí tu mensaje. Te respondo en menos de un día.';
+  } catch (err) {
+    status.replaceChildren(
+      document.createTextNode('No se pudo enviar. Escríbeme por '),
+      el('a', { href: WHATSAPP, target: '_blank', rel: 'noopener', text: 'WhatsApp' }),
+      document.createTextNode(' o a tomasurizarbusiness@gmail.com.')
+    );
+  } finally {
+    btn.disabled = false;
+  }
+});

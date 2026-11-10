@@ -7,7 +7,17 @@
 <meta name="description" content="Reels e imágenes de producto hechos con IA para marcas, agencias creativas y estudios boutique.">
 <meta property="og:title" content="Divia · Tu producto, en movimiento">
 <meta property="og:description" content="Reels e imágenes de producto hechos con IA para marcas, agencias creativas y estudios boutique.">
-<meta property="og:image" content="assets/reels/pompom-poster.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://divia-reels.vercel.app/">
+<meta property="og:image" content="https://divia-reels.vercel.app/assets/og-divia.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#101A2B">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -23,13 +33,13 @@
     <a href="#comparar">Del producto al reel</a>
     <a href="#planes">Planes</a>
   </nav>
-  <a class="btn btn-accent btn-sm" href="#contacto">Pide una prueba</a>
+  <a class="btn btn-accent btn-sm" href="#contacto" data-interes="Una prueba">Pide una prueba</a>
 </header>
 
 <main>
   <section id="inicio" class="wrap hero">
     <div class="hero-copy">
-      <h1>Tu producto, en movimiento.</h1>
+      <h1><span class="line"><span>Tu producto,</span></span> <span class="line"><span>en movimiento.</span></span></h1>
       <p class="lead">Reels e imágenes hechos con IA para marcas, agencias creativas y estudios boutique. Sin rodaje, con dirección de arte.</p>
       <div class="actions">
         <a class="btn btn-light" href="#reels">Ver el trabajo</a>
@@ -114,7 +124,7 @@
           <li>Entrega en 5 días hábiles, o en 48 horas si es urgente</li>
           <li>Formatos adicionales: vertical, cuadrado y horizontal</li>
         </ul>
-        <a class="btn btn-outline" href="mailto:tomasurizarbusiness@gmail.com?subject=Cotizaci%C3%B3n%20para%20mi%20agencia">Cotizar para mi agencia</a>
+        <a class="btn btn-outline" href="#contacto" data-interes="Producción para mi agencia">Cotizar para mi agencia</a>
       </div>
       <div class="audience">
         <h3>Para marcas y negocios</h3>
@@ -168,7 +178,7 @@
     </div>
     <p class="plans-note">A cualquier plan puedes sumar reels de 30 s, más imágenes, un reel premium con persona a cámara o tomas reales, y entregas urgentes.</p>
     <div class="actions plans-cta">
-      <a class="btn btn-outline" href="mailto:tomasurizarbusiness@gmail.com?subject=Quiero%20cotizar%20un%20plan%20mensual">Cotizar un plan</a>
+      <a class="btn btn-outline" href="#contacto" data-interes="Un plan mensual">Cotizar un plan</a>
     </div>
   </section>
 
@@ -176,17 +186,59 @@
     <h2>Mándame una foto de tu producto. Te devuelvo un reel.</h2>
     <p class="contact-lead">¿No sabes qué plan elegir? Empieza con una prueba: un primer reel y 3 imágenes con tu producto, sin contratar un plan.</p>
     <div class="actions center">
-      <a class="btn btn-accent btn-lg" href="mailto:tomasurizarbusiness@gmail.com?subject=Quiero%20una%20prueba">Pedir una prueba</a>
+      <a class="btn btn-accent btn-lg" href="https://wa.me/56978797927?text=Hola%20Divia%2C%20me%20gustar%C3%ADa%20pedir%20una%20prueba%20para%20mi%20producto" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
     </div>
-    <p class="mail"><a href="mailto:tomasurizarbusiness@gmail.com">tomasurizarbusiness@gmail.com</a></p>
+
+    <form class="contact-form" id="contact-form" action="https://formsubmit.co/tomasurizarbusiness@gmail.com" method="POST">
+      <p class="form-intro">O déjame tus datos y te respondo en menos de un día.</p>
+      <input type="hidden" name="_subject" value="Nuevo contacto desde divia">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field-row">
+        <div class="field">
+          <label for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="Nombre" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-marca">Marca o agencia</label>
+          <input id="f-marca" name="Marca o agencia" type="text" autocomplete="organization">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-contacto">Correo o WhatsApp</label>
+          <input id="f-contacto" name="Correo o WhatsApp" type="text" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-interes">Me interesa</label>
+          <select id="f-interes" name="Me interesa">
+            <option>Una prueba</option>
+            <option>Un plan mensual</option>
+            <option>Producción para mi agencia</option>
+            <option>Otra cosa</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-mensaje">Cuéntame de tu producto</label>
+        <textarea id="f-mensaje" name="Mensaje" rows="4"></textarea>
+      </div>
+      <div class="form-foot">
+        <button class="btn btn-light" type="submit">Enviar</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
   </section>
 </main>
 
 <footer class="wrap foot">
   <span>Divia, Santiago de Chile</span>
+  <span><a href="https://wa.me/56978797927?text=Hola%20Divia%2C%20me%20gustar%C3%ADa%20pedir%20una%20prueba%20para%20mi%20producto" target="_blank" rel="noopener">WhatsApp +56 9 7879 7927</a></span>
+  <span><a href="mailto:tomasurizarbusiness@gmail.com">tomasurizarbusiness@gmail.com</a></span>
   <span>Instagram [TU USUARIO]</span>
 </footer>
 
+<div class="cursor" aria-hidden="true">Ver</div>
 <script src="main.js"></script>
 </body>
 </html>
