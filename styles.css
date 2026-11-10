@@ -188,14 +188,13 @@ input[type=range] { width: 100%; min-height: 44px; accent-color: var(--accent); 
 .tag-l { left: 0; }
 .tag-r { right: 0; }
 
-/* Públicos */
-.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
-.audience { border-top: 1px solid var(--text); padding-top: 28px; display: flex; flex-direction: column; align-items: flex-start; height: 100%; }
-.audience h3 { font-weight: 400; font-size: 40px; line-height: 1.05; margin-bottom: 14px; }
-.audience p { color: var(--muted); margin: 0 0 18px; }
-.audience ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
-.audience ul { margin-bottom: 28px; }
-.audience .btn { margin-top: auto; }
+/* Franja para agencias, bajo los planes */
+.agency {
+  margin-top: 64px; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 48px;
+}
+.agency p { margin: 0; max-width: 720px; font-size: 19px; color: var(--muted); }
+.agency strong { color: var(--text); font-weight: 600; }
 
 /* Imágenes: franja compacta, imágenes completas */
 .strip { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 732px); gap: 48px; align-items: end; }
@@ -281,7 +280,7 @@ h1 .line > span { display: block; }
 @media (max-width: 900px) {
   .wrap { padding-left: 16px; padding-right: 16px; }
   .navlinks { display: none; }
-  .hero, .two, .compare-layout, .strip { grid-template-columns: minmax(0, 1fr); }
+  .hero, .compare-layout, .strip { grid-template-columns: minmax(0, 1fr); }
   .strip { gap: 28px; }
   .wall { height: 440px; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
