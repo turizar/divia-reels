@@ -20,15 +20,28 @@ const REELS = [
       ['Tonos', 'Dorado, Chocolate y Black']
     ]
   },
-  { id: 'molienda', brand: 'Molienda', product: 'Café de especialidad', cat: 'Comida y bebida', color: '#4A3426', ink: '#F4EFE8', pronto: true },
+  {
+    id: 'sabvia',
+    brand: 'SABVIA',
+    product: 'Mocasines de gamuza',
+    cat: 'Moda',
+    video: 'assets/reels/sabvia.mp4',
+    poster: 'assets/reels/sabvia-poster.jpg',
+    goal: 'Presentar la primera colección de mocasines en sus cuatro colores.',
+    facts: [
+      ['Duración', '0:15'],
+      ['Formato', 'Vertical 9:16'],
+      ['Colores', 'Oliva, camel, miel y burdeo']
+    ]
+  },
   { id: 'ladera', brand: 'Ladera', product: 'Vino natural', cat: 'Comida y bebida', color: '#7A2E3A', ink: '#F7ECEC', pronto: true },
   { id: 'faro', brand: 'Faro', product: 'Audífonos', cat: 'Tecnología', color: '#3C4A62', ink: '#EEF2F7', pronto: true }
 ];
 
 const WALL = {
-  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/pompom-cuadro-4.jpg', 'block:molienda'],
-  2: ['img:assets/reels/pompom-cuadro-2.jpg', 'block:ladera', 'img:assets/reels/pompom-cuadro-5.jpg', 'img:assets/reels/pompom-cuadro-6.jpg'],
-  3: ['block:faro', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:pompom', 'img:assets/reels/pompom-cuadro-6.jpg']
+  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/pompom-cuadro-4.jpg', 'img:assets/reels/sabvia-cuadro-4.jpg'],
+  2: ['img:assets/reels/sabvia-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/sabvia-cuadro-3.jpg', 'img:assets/reels/pompom-cuadro-5.jpg'],
+  3: ['clip:assets/escenas/sabvia-flotando.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/pompom-cuadro-6.jpg']
 };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,6 +67,12 @@ function wallItem(spec) {
   if (kind === 'video') {
     const r = byId(val);
     const v = el('video', { src: r.video, poster: r.poster, playsinline: '', muted: '', loop: '', preload: 'none' });
+    v.muted = true;
+    if (!reduceMotion) v.autoplay = true;
+    return el('div', { class: 'wall-item' }, [v]);
+  }
+  if (kind === 'clip') {
+    const v = el('video', { src: val, poster: val.replace('.mp4', '.jpg'), playsinline: '', muted: '', loop: '', preload: 'none' });
     v.muted = true;
     if (!reduceMotion) v.autoplay = true;
     return el('div', { class: 'wall-item' }, [v]);
@@ -187,9 +206,9 @@ range.addEventListener('input', () => compare.style.setProperty('--pos', range.v
 
 /* Imágenes */
 const IMAGENES = [
+  { src: 'assets/imagenes/sabvia-imagen-1.jpg', alt: 'Mocasines SABVIA en cuatro colores alineados sobre fondo crema' },
   { src: 'assets/imagenes/pompom-imagen-2.jpg', alt: 'Aceite PomPom Dorado gigante sobre una playa con bañistas' },
-  { src: 'assets/imagenes/pompom-imagen-3.jpg', alt: 'Aceite PomPom Chocolate sobre una toalla en la arena, con lentes de sol' },
-  { src: 'assets/imagenes/pompom-imagen-4.jpg', alt: 'Aceite PomPom Black al borde de una piscina iluminada de noche' }
+  { src: 'assets/imagenes/sabvia-imagen-2.jpg', alt: 'Mocasines SABVIA en una escalera de piedra al sol, con el logo de la primera colección' }
 ];
 
 document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) =>
@@ -256,3 +275,11 @@ form.addEventListener('submit', async (e) => {
     btn.disabled = false;
   }
 });
+
+/* Comparador: la escena se reproduce solo cuando está a la vista */
+const compareVideo = document.querySelector('.compare video');
+if (compareVideo && !reduceMotion) {
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) compareVideo.play().catch(() => {}); else compareVideo.pause();
+  }, { threshold: 0.3 }).observe(compareVideo);
+}

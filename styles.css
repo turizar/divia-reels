@@ -173,12 +173,12 @@ h2 { font-size: clamp(42px, 5.5vw, 72px); line-height: 1; }
 .tile.soon .dur { text-shadow: none; }
 
 /* Comparador */
-.compare-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 64px; align-items: center; }
+.compare-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 64px; align-items: center; }
 .compare-layout h2 { margin-bottom: 16px; }
 .range-label { display: block; margin-top: 36px; margin-bottom: 8px; font-size: 15px; color: var(--muted); }
 input[type=range] { width: 100%; min-height: 44px; accent-color: var(--accent); }
-.compare { position: relative; aspect-ratio: 9 / 16; overflow: hidden; background: var(--surface); }
-.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface); }
+.compare img, .compare video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .compare .before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
 .compare .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--text); }
 .tag {
@@ -295,7 +295,7 @@ h1 .line > span { display: block; }
   .plan-featured { padding-left: 16px; padding-right: 16px; }
   .gallery { gap: 6px; }
   .section { padding-top: 96px; }
-  .compare { max-width: 340px; width: 100%; margin: 0 auto; }
+  .compare { max-width: 420px; width: 100%; margin: 0 auto; }
   .field-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .player[open] { display: block; overflow-y: auto; }
   .player-inner { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 72px 16px 32px; }
