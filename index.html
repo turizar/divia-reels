@@ -46,45 +46,45 @@
   <section id="reels" class="wrap section">
     <div class="section-head">
       <h2>Reels</h2>
-      <p>Toca un reel para verlo con sonido, junto a lo que buscaba la marca.</p>
+      <p>Pasa el mouse para ver una vista previa. Haz clic para verlo a pantalla completa, con sonido y lo que buscaba la marca.</p>
     </div>
     <div class="tabs" role="group" aria-label="Filtrar por categoría"></div>
-
-    <div class="viewer" id="viewer" hidden>
-      <div class="viewer-grid">
-        <div class="stage">
-          <div class="bars" aria-hidden="true"></div>
-          <video id="viewer-video" playsinline muted loop preload="metadata"></video>
-          <div class="stage-soon" hidden>
-            <span class="soon-brand"></span>
-            <span>Reel en producción</span>
-          </div>
-          <button class="sound" type="button" aria-pressed="false">Activar sonido</button>
-        </div>
-        <div class="case">
-          <span class="case-cat"></span>
-          <h3 class="case-goal"></h3>
-          <dl class="case-facts"></dl>
-          <div class="actions">
-            <button class="btn btn-outline" type="button" data-go="-1">Anterior</button>
-            <button class="btn btn-accent" type="button" data-go="1">Siguiente</button>
-            <button class="btn btn-ghost" type="button" data-close>Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="grid" id="grid"></div>
   </section>
 
   <section id="imagenes" class="wrap section">
-    <div class="section-head">
-      <h2>Imágenes</h2>
-      <p>Escenas de producto para el feed, las historias, una campaña o tu tienda online.</p>
+    <div class="strip">
+      <div class="strip-copy">
+        <h2>Imágenes</h2>
+        <p>Escenas de producto para el feed, las historias, una campaña o tu tienda online.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
     </div>
-    <div class="gallery" id="gallery"></div>
   </section>
 
+  <dialog class="player" id="player" aria-label="Reproductor de reels">
+    <div class="player-inner">
+      <div class="stage">
+        <div class="bars" aria-hidden="true"></div>
+        <video id="player-video" playsinline loop preload="none"></video>
+        <button class="sound" type="button" aria-pressed="true">Silenciar</button>
+      </div>
+      <div class="case">
+        <span class="case-cat"></span>
+        <h2 class="case-brand"></h2>
+        <p class="case-goal"></p>
+        <dl class="case-facts"></dl>
+        <div class="actions player-nav">
+          <button class="btn btn-outline" type="button" data-go="-1">Anterior</button>
+          <button class="btn btn-accent" type="button" data-go="1">Siguiente</button>
+        </div>
+      </div>
+    </div>
+    <button class="player-close" type="button" aria-label="Cerrar">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 4 L18 18 M18 4 L4 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </dialog>
 
   <section id="comparar" class="wrap section">
     <div class="compare-layout">
