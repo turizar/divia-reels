@@ -3,7 +3,8 @@
 // "video" y "poster" a tus archivos en assets/reels/. Los reels con "pronto: true"
 // se muestran como "En producción"; bórralos cuando tengas los reels reales.
 // Para agregar una imagen: deja el archivo en assets/imagenes/ y suma una línea en IMAGENES
-// (más abajo). Se muestran completas, en vertical (9:16), tres por línea.
+// (más abajo). Se muestran completas, en vertical (9:16), tres por línea. Si la línea lleva
+// "video", esa imagen se muestra como una toma en movimiento (la foto queda de portada).
 
 const REELS = [
   {
@@ -54,7 +55,7 @@ const REELS = [
 
 const WALL = {
   1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/hotumatur-cuadro-2.jpg', 'clip:assets/escenas/hotumatur-amanecer.mp4'],
-  2: ['img:assets/reels/hotumatur-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/sabvia-cuadro-1.jpg', 'clip:assets/escenas/hotumatur-caballos.mp4'],
+  2: ['clip:assets/escenas/hotumatur-estrellas.mp4', 'video:pompom', 'img:assets/reels/sabvia-cuadro-1.jpg', 'clip:assets/escenas/hotumatur-caballos.mp4'],
   3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/sabvia-cuadro-4.jpg']
 };
 
@@ -222,12 +223,21 @@ range.addEventListener('input', () => compare.style.setProperty('--pos', range.v
 const IMAGENES = [
   { src: 'assets/imagenes/sabvia-imagen-1.jpg', alt: 'Mocasines SABVIA en cuatro colores alineados sobre fondo crema' },
   { src: 'assets/imagenes/pompom-imagen-2.jpg', alt: 'Aceite PomPom Dorado gigante sobre una playa con bañistas' },
-  { src: 'assets/imagenes/hotumatur-imagen-1.jpg', alt: 'Moai de Ahu Tongariki, en Rapa Nui, iluminados por el sol bajo un cielo azul' }
+  { video: 'assets/imagenes/hotumatur-entre-moais.mp4', src: 'assets/imagenes/hotumatur-imagen-1.jpg', alt: 'La cámara avanza entre los moai de Ahu Tongariki, en Rapa Nui, bajo un cielo azul' }
 ];
 
-document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) =>
-  el('figure', { class: 'shot' }, [el('img', { src: im.src, alt: im.alt, loading: 'lazy' })])
-));
+document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) => {
+  if (im.video) {
+    // Una imagen puede ser una toma en movimiento: se reproduce en silencio y en bucle.
+    const v = el('video', { src: im.video, poster: im.src, playsinline: '', muted: '', loop: '', preload: 'none', 'aria-label': im.alt });
+    v.muted = true;
+    if (!reduceMotion) {
+      new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.3 }).observe(v);
+    }
+    return el('figure', { class: 'shot' }, [v]);
+  }
+  return el('figure', { class: 'shot' }, [el('img', { src: im.src, alt: im.alt, loading: 'lazy' })]);
+}));
 
 /* Movimiento: entrada del inicio y grilla en cascada */
 const root = document.documentElement;
