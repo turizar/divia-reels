@@ -34,14 +34,28 @@ const REELS = [
       ['Colores', 'Oliva, camel, miel y burdeo']
     ]
   },
-  { id: 'ladera', brand: 'Ladera', product: 'Vino natural', cat: 'Comida y bebida', color: '#7A2E3A', ink: '#F7ECEC', pronto: true },
+  {
+    id: 'hotumatur',
+    brand: 'Hotumatur',
+    product: 'Full Day Hotu Matua, Rapa Nui',
+    cat: 'Turismo',
+    line: 'Turismo, Full Day Hotu Matua en Rapa Nui',
+    video: 'assets/reels/hotumatur.mp4',
+    poster: 'assets/reels/hotumatur-poster.jpg',
+    goal: 'Mostrar Ahu Tongariki, una de las paradas del tour, y despertar las ganas de vivirlo.',
+    facts: [
+      ['Duración', '0:21'],
+      ['Formato', 'Vertical 9:16'],
+      ['Lugar', 'Ahu Tongariki']
+    ]
+  },
   { id: 'faro', brand: 'Faro', product: 'Audífonos', cat: 'Tecnología', color: '#3C4A62', ink: '#EEF2F7', pronto: true }
 ];
 
 const WALL = {
-  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/pompom-cuadro-4.jpg', 'img:assets/reels/sabvia-cuadro-4.jpg'],
-  2: ['img:assets/reels/sabvia-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/sabvia-cuadro-3.jpg', 'img:assets/reels/pompom-cuadro-5.jpg'],
-  3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/pompom-cuadro-6.jpg']
+  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/hotumatur-cuadro-2.jpg', 'clip:assets/escenas/hotumatur-amanecer.mp4'],
+  2: ['img:assets/reels/hotumatur-cuadro-1.jpg', 'video:pompom', 'img:assets/reels/sabvia-cuadro-1.jpg', 'clip:assets/escenas/hotumatur-caballos.mp4'],
+  3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/sabvia-cuadro-4.jpg']
 };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -155,7 +169,7 @@ function showReel() {
   updateSound();
   pVideo.play().catch(() => { state.sound = false; updateSound(); pVideo.play().catch(() => {}); });
   pBrand.textContent = r.brand;
-  pCat.textContent = `${r.cat}, ${r.product.toLowerCase()}`;
+  pCat.textContent = r.line || `${r.cat}, ${r.product.toLowerCase()}`;
   pGoal.textContent = r.goal;
   pFacts.replaceChildren(...r.facts.map(([k, v]) => el('div', {}, [el('dt', { text: k }), el('dd', { text: v })])));
   pNav.hidden = list.length < 2;
@@ -208,7 +222,7 @@ range.addEventListener('input', () => compare.style.setProperty('--pos', range.v
 const IMAGENES = [
   { src: 'assets/imagenes/sabvia-imagen-1.jpg', alt: 'Mocasines SABVIA en cuatro colores alineados sobre fondo crema' },
   { src: 'assets/imagenes/pompom-imagen-2.jpg', alt: 'Aceite PomPom Dorado gigante sobre una playa con bañistas' },
-  { src: 'assets/imagenes/sabvia-imagen-2.jpg', alt: 'Mocasines SABVIA en una escalera de piedra al sol, con el logo de la primera colección' }
+  { src: 'assets/imagenes/hotumatur-imagen-1.jpg', alt: 'Moai de Ahu Tongariki, en Rapa Nui, iluminados por el sol bajo un cielo azul' }
 ];
 
 document.getElementById('gallery').replaceChildren(...IMAGENES.map((im) =>
