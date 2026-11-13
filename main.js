@@ -50,13 +50,27 @@ const REELS = [
       ['Lugar', 'Ahu Tongariki']
     ]
   },
-  { id: 'faro', brand: 'Faro', product: 'Audífonos', cat: 'Tecnología', color: '#3C4A62', ink: '#EEF2F7', pronto: true }
+  {
+    id: 'forester',
+    brand: 'Forester',
+    product: 'SUV, desde fotos de celular',
+    cat: 'Autos',
+    line: 'Autos, pieza demo hecha a partir de fotos de celular',
+    video: 'assets/reels/forester.mp4',
+    poster: 'assets/reels/forester-poster.jpg',
+    goal: 'Convertir fotos de celular de un auto estacionado en un comercial de ruta por la Patagonia.',
+    facts: [
+      ['Duración', '0:20'],
+      ['Formato', 'Vertical 9:16'],
+      ['Punto de partida', '10 fotos de celular']
+    ]
+  }
 ];
 
 const WALL = {
-  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'img:assets/reels/hotumatur-cuadro-2.jpg', 'clip:assets/escenas/hotumatur-amanecer.mp4'],
-  2: ['clip:assets/escenas/hotumatur-estrellas.mp4', 'video:pompom', 'img:assets/reels/sabvia-cuadro-1.jpg', 'clip:assets/escenas/hotumatur-caballos.mp4'],
-  3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'img:assets/reels/sabvia-cuadro-4.jpg']
+  1: ['img:assets/reels/pompom-cuadro-1.jpg', 'clip:assets/escenas/sabvia-caminata.mp4', 'clip:assets/escenas/forester-nieve.mp4', 'clip:assets/escenas/hotumatur-amanecer.mp4'],
+  2: ['clip:assets/escenas/hotumatur-estrellas.mp4', 'video:pompom', 'clip:assets/escenas/forester-camino.mp4', 'clip:assets/escenas/hotumatur-caballos.mp4'],
+  3: ['clip:assets/escenas/sabvia-escalera.mp4', 'img:assets/reels/pompom-cuadro-3.jpg', 'video:sabvia', 'clip:assets/escenas/forester-lago.mp4']
 };
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
